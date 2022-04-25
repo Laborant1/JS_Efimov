@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Задание №6</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            div.cell{
+                display: table-cell; }
+            div.row{
+                display: table-row; }
+            label{
+                margin: 1px 1px 1px 1px; }
+        </style>
+        <script>
+            var a=0;
+            var b=0;
+            var c=0;
+            var d=0;
+            $(document).ready(function () {
+                $(".cquest").on("click", function () {
+                    var value = $("input[name='radio']:checked").val();
+                    switch(value){
+                        case "1":
+                            a++;
+                            break;
+                        case "2":
+                            b++;
+                            break;
+                        case "3":
+                            c++;
+                            break;
+                        case "4":
+                            d++;
+                            break; }
+                    max=a+b+c+d;
+                    h1=a/max*100;
+                    h2=b/max*100;
+                    h3=c/max*100;
+                    h4=d/max*100;
+                    $("#res1").html(a+"; "+h1+"%");
+                    $("#res2").html(b+"; "+h2+"%");
+                    $("#res3").html(c+"; "+h3+"%");
+                    $("#res4").html(d+"; "+h4+"%");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="body__wrapper">
+            <div class="body__header">
+                <div class="row">
+                    <div class="cell">
+                        <h3>Вопрос:</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="body_text">
+                <div class="row">
+                    <div class="cell">
+                    Твой пол:
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cell">
+                        <h3> Варианты ответа:
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="body_question">
+                <div class="row">
+                    <div class="cell">
+                        <input type="radio" id="1" name="radio" value="1">
+                        <label for="1">Ответ 1: Мужской </label>
+                    </div>
+                    <div class="cell">
+                        <label> | Количество проголосовавших: </label>
+                    </div>
+                    <div class="cell">
+                        <div id="res1">0</div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="cell">
+                    <input type="radio" id="2" name="radio" value="2">
+                    <label for="2">Ответ 2: Женский </label>
+                </div>
+                <div class="cell">
+                    <label> | Количество проголосовавших: </label>
+                </div>
+                <div class="cell">
+                    <div id="res2">0</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    <button class="cquest" id="idquest" value="quest">Ответить</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
