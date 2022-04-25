@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Задание №3</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            div.button{
+                display: inline-block;
+            }
+            input{
+                background: blue;
+                border-color: black;
+                color: white;
+                margin-top: 600px;
+                width: 120px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            #control_image{
+                position: absolute;
+                top: 100px;
+                left: 100px;
+                width: 1px;
+                height: 1px;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function () {
+                $("#left").on("click", function () {
+                    if($("#control_image").css("left")==="0px"){
+                        $("#control_image").css("left", "20px");
+                    }
+                    $("#control_image").css("left", "-=20px");
+                });
+                $("#right").on("click", function () {
+                    $("#control_image").css("left", "+=20px");
+                });
+                $("#up").on("click", function () {
+                    if($("#control_image").css("top")==="20px"){
+                        $("#control_image").css("top", "20px");
+                    }
+                    $("#control_image").css("top", "-=20px");
+                });
+                $("#down").on("click", function () {
+                    $("#control_image").css("top", "+=20px");
+                });
+            });
+        </script>
+        <div class="body__wrapper">
+            <div class="buttons">
+                <div class="button">
+                    <input type="button" value="Налево" id="left" size="32">
+                </div>
+                <div class="button">
+                    <input type="button" value="Направо" id="right">
+                </div>
+                <div class="button">
+                    <input type="button" value="Вверх" id="up">
+                </div>
+                <div class="button">
+                    <input type="button" value="Вниз" id="down">
+                </div>
+            </div>
+            <div class="control_block">
+                <div id="control_image">
+                    <img src="mario.png" alt="">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
