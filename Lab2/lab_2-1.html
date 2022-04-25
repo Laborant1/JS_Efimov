@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Задание №1</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                function randomColor() {
+                    var rint = Math.floor( 0x100000000 * Math.random());
+                    return 'rgba(' + (rint & 255) + ',' + (rint >> 8 & 255) + ',' + (rint >> 16 & 255) + ',' + (rint >> 24 & 255)/255 + ')';
+                };
+                $("#button").on("click", function () {
+                    $('body').css('background', randomColor());
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <input type="button" value="Нажми на меня" id="button">
+    </body>
+</html>
