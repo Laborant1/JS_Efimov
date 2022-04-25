@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Задание №7</title>
+        <script language="JavaScript">
+            function array_build(x,y,z,k) {
+                do_ = x.slice(y,z);
+                document.write(k + do_ + "<br>");
+                return do_; } 
+        </script>
+    </head>
+    <body>
+        <script language="JavaScript"> 
+            year=new Array("Декабрь"," Январь"," Февраль"," Март"," Апрель"," Май", " Июнь"," Июль"," Август"," Сентябрь"," Октябрь"," Ноябрь");
+            summer=new Array();
+            summer=year.slice(6,9);
+            document.write(summer+"<br>");
+            x=new Array("Математика", " Геометрия", " Тригонометрия", " Алгебра", " Русский язык", " Английский язык");
+            document.write("Все предметы: " + x + "<br>");
+            document.write("<br>");
+            k = array_build(x, 0, 4, "Точные предметы: ");
+            document.write("<br>");
+            k = array_build(x, 4, 6, "Гуманитарные предметы: ");
+        </script>
+    </body>
+</html>
