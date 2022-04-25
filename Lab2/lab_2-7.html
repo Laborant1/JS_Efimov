@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Задание №7</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            div.cell{
+                display: table-cell; }
+            div.row{
+                display: table-row; }
+            div.body__display{
+                display: table-row; }
+            div.body__panel{
+                display: table-row; }
+            button{
+                width: 35px;
+                height: 35px;
+                text-align: center;
+                color: #000;
+                margin: 1px 1px 1px 1px;
+                cursor: pointer; }
+            #display{
+                border-radius: 3px;
+                text-align: center;
+                color: #000;
+                margin: 1px 1px 10px 1px; }
+        </style>
+        <script>
+            $(document).ready(function () {
+                var num1 = "";
+                var nums = [];
+                var operator = "";
+                var results = "";
+                $(".btn__number").on("click", function () {
+                    var press = $(this).attr("value");
+                    operator = "#";
+                    num1 += press;
+                    console.log(press);
+                    $("#display").val($("#display").val() + press);
+                });
+                $(".btn__operator").on("click", function () {
+                    if (num1) {
+                        nums.push(num1); }
+                    if (operator) {
+                        operator = $(this).attr("value");
+                        nums.push(operator);
+                        $("#display").val($("#display").val() + operator);
+                        num1 = ""; }
+                });
+                $(".btn__equal").on("click", function () {
+                    nums.push(num1);
+                    operator = "#";
+                    num1 = "";
+                    for (; nums.indexOf("^") > -1;) {
+                        var num2 = Math.pow(nums[nums.indexOf("^") - 1], nums[nums.indexOf("^") + 1]);
+                        var index = nums.indexOf("^");
+                        nums.splice((nums.indexOf("^") - 1), 3);
+                        nums.splice((index - 1), 0, num2); }
+                    results = eval(nums.join(""));
+                    nums = [];
+                    nums.push(results.toString());
+                    if (results % 1 === 0) {
+                        $("#display").val($("#display").val() + "=" + results);
+                    } else {
+                        results = results.toFixed(4);
+                        $("#display").val($("#display").val() + "="+ results); }
+                });
+                $(".btn__clear").on("click", function () {
+                    num1 = "";
+                    nums = [];
+                    operator = "";
+                    results = "";
+                    $('#display').val('');
+                });
+                $(".btn__cclear").on("click", function () {
+                    $("#display").val($("#display").val().slice(0,-1));
+                });
+            });
+            function generateButton(lcell, lclass, lid, linfo, lvalue) {
+                document.write("<div class='"+lcell+"'>");
+                document.write("<button class='"+lclass+"' id="+lid+" value='"+lvalue+"'>"+linfo+"</button>");
+                document.write("</div>");
+                console.log("generate.uid:"+lcell+":"+lclass+":"+lid+":"+linfo+":"+lvalue); }
+        </script>
+    </head>
+    <body>
+        <div class="body__wrapper">
+            <div class="body__calculator">
+                <div class="body__display">
+                    <div class="row">
+                        <div class="cell">
+                            <input type="text" id="display">
+                        </div>
+                    </div>
+                </div>
+                <div class="body__panel">
+                    <div class="row">
+                        <div class="cell"></div>
+                        <script>
+                            generateButton("cell", "btn__clear", "button-clear", "C", "clear");
+                            generateButton("cell", "btn__cclear", "button-cclear", "<<", "cclear");
+                            generateButton("cell", "btn__operator", "button-divide", "/", "/");
+                        </script>
+                    </div>
+                    <div class="row">
+                        <script>
+                            for(var i = 1; i < 4; i++) {
+                                generateButton("cell", "btn__number", i, i, i); }
+                            generateButton("cell", "btn__operator", "button-plus", "+", "+");
+                        </script>
+                    </div>
+                    <div class="row">
+                        <script>
+                            for(var i = 1+3; i < 4+3; i++) {
+                                generateButton("cell", "btn__number", i, i, i); }
+                            generateButton("cell", "btn__operator", "button-minus", "&minus;", "-");
+                        </script>
+                    </div>
+                    <div class="row">
+                        <script>
+                            for(var i = 1+3+3; i < 4+3+3; i++) {
+                                generateButton("cell", "btn__number", i, i, i); }
+                            generateButton("cell", "btn__operator", "button-multiply", "&times;", "*");
+                        </script>
+                    </div>
+                    <div class="row">
+                        <div class="cell"></div>
+                            <script>
+                                generateButton("cell", "btn__number", "0", "0", "0");
+                                generateButton("cell", "btn__number", ".", ".", ".");
+                                generateButton("cell", "btn__equal", "button-equal", "=", "=");
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
