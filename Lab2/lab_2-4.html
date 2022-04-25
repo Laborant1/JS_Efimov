@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Задание №4</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <script>
+            $(document).mousemove(function(e){
+                var X = e.pageX;
+                var Y = e.pageY;
+                $("#root").html("<h2>Координаты курсора:</h3><h3>(X: " + X + ", Y: " + Y + ")</h2>");
+            }); 
+        </script>
+        <div id="root">
+            <h2>Координаты курсора:</h2>
+        </div>
+    </body>
+</html>
