@@ -31,21 +31,21 @@
             $(document).ready(function () {
                 $("#left").on("click", function () {
                     if($("#control_image").css("left")==="0px"){
-                        $("#control_image").css("left", "20px");
+                        $("#control_image").css("left", "100px");
                     }
-                    $("#control_image").css("left", "-=20px");
+                    $("#control_image").css("left", "-=100px");
                 });
                 $("#right").on("click", function () {
-                    $("#control_image").css("left", "+=20px");
+                    $("#control_image").css("left", "+=100px");
                 });
                 $("#up").on("click", function () {
-                    if($("#control_image").css("top")==="20px"){
-                        $("#control_image").css("top", "20px");
+                    if($("#control_image").css("top")==="100px"){
+                        $("#control_image").css("top", "200px");
                     }
-                    $("#control_image").css("top", "-=20px");
+                    $("#control_image").css("top", "-=100px");
                 });
                 $("#down").on("click", function () {
-                    $("#control_image").css("top", "+=20px");
+                    $("#control_image").css("top", "+=100px");
                 });
             });
         </script>
