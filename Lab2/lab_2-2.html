@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Задание №2</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            #body__fieldset {
+            display: inline-block;
+            background-color: aqua;
+            margin-top: 100px;
+            margin-left: 500px;
+            max-width: none;
+            max-height: none}
+            
+            #body__ {
+            display: inline-block;
+            margin-left: 25px;
+            padding-right: 25px;
+            width: 350px; }
+            
+            legend {
+            color: #008B8B;
+            padding: 3px 6px;
+            font-size: 24px; }
+            
+            form.registration {
+            display: table; }
+            div.registration {
+            display: table-row; }
+            
+            label, input {
+            display: table-cell;
+            margin-bottom: 15px; }
+            
+            label {
+            padding-right: 10px;
+            font-size: 16px; }
+            
+            textarea {
+            resize: none; }
+        </style>
+        <script>
+            $(document).ready(function () {
+                function check_name() {
+                    x = '#name';
+                    var a = $(x).val();
+                    a = String(a);
+                    var b = "";
+                    if(a.length<4){
+                        b = "Ошибка! Некорректный ввод имени, должно быть больше 4 символов!";
+                        $(x).css('border-color', '#fd0707'); }
+                    return b; }
+                function check_passwordx() {
+                    x = '#passwordx';
+                    var a = $(x).val();
+                    a = String(a);
+                    var b = "";
+                    if(a.length<4){
+                        b = "Ошибка! Некорректный ввод пароля, должно быть больше 4 символов!";
+                        $(x).css('border-color', '#fd0707'); }
+                    return b; }
+                function check_passwordy() {
+                    x = '#passwordy';
+                    var a = $(x).val();
+                    a = String(a);
+                    var b = "";
+                    if(a.length<4){
+                        b = "Ошибка! Некорректный ввод пароля, должно быть больше 4 символов!";
+                        $(x).css('border-color', '#fd0707'); }
+                    return b; }
+                function check_passwordxy() {
+                    x = '#passwordx';
+                    y = '#passwordy';
+                    var a = $('#passwordx').val();
+                    var b = $('#passwordy').val();
+                    a = String(a);
+                    b = String(b);
+                    var c = "";
+                    if(!(a===b)&&(a.length>=4)&&(b.length>=4)){
+                        c = "Пароли не совпадают";
+                        $(x).css('border-color', '#fd0707');
+                        $(y).css('border-color', '#fd0707'); }
+                    return c; }
+                function check_email() {
+                    x = '#email';
+                    var a = $(x).val();
+                    a = String(a);
+                    var b = "";
+                    if((a.length==0)){
+                        b = `${b} Введите корректный email!`;
+                        $(x).css('border-color', '#fd0707'); }
+                    if(!(a.includes('@'))){
+                        b = `${b} Введите @!`;
+                        $(x).css('border-color', '#fd0707'); }
+                    if(!(a.includes('.'))){
+                        b = `${b} Введите .!`;
+                        $(x).css('border-color', '#fd0707'); }
+                    return b; }
+    function check_message() {
+        x = '#message';
+        var a = $(x).val();
+        a = String(a);
+        var b = "";
+        if((a.length<10)){
+            b = "Поле сообщения содержит Менее 10 символов!";
+            $(x).css('border-color', '#fd0707'); }
+        return b; }
+                $("#button").on("click", function () {
+                    var a = `${check_name()}     ${check_passwordx()}     ${check_passwordy()}     ${check_passwordxy()}     ${check_email()} ${check_message()}`;
+                    a = String(a);
+                    if(a.length>0){
+                        alert(a); }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="body__wrapper">
+            <div id="body__fieldset">
+            <form autocomplete="off" method="get" class="registration">
+            <fieldset>
+            <legend>Введите данные</legend>
+                <div class="registration">
+                    <label for="name">Ваше имя:</label>
+                    <input type="text" id="name" name="name" required minlength="4" maxlength="32" size="32" placeholder="Введите имя">
+                </div>
+                <div class="registration">
+                    <label for="passwordx">Пароль:</label>
+                    <input type="password" id="passwordx" name="passwordx" required minlength="4" maxlength="32" size="32" placeholder="Введите пароль">
+                </div>
+                <div class="registration">
+                    <label for="passwordy">Подтверждение пароля:</label>
+                    <input type="password" id="passwordy" name="passwordy" required minlength="4" maxlength="32" size="32" placeholder="Введите пароль">
+                </div>
+                <div class="registration">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required size="32"  placeholder="Введите email">
+                </div>
+                <div class="registration">
+                    <label for="tmes">Тема сообщения:</label>
+                    <input type="text" id="tmes" name="tmes" minlength="4" maxlength="32" size="32" placeholder="Введите тему сообщения">
+                </div>
+                <div class="registration">
+                    <label for="message">Сообщение:</label>
+                    <textarea id="message" name="message" rows="2" cols="24" minlength="8" maxlength="128" placeholder="Введите сообщение"></textarea>
+                </div>
+                <p></p>
+                <div class="registration">
+                    <input type="button" value="Отправить" id="button">
+                    <p></p>
+                    <input type="reset" value="Очистить" id="reset">
+                </div>
+            </fieldset>
+            </form>
+            </div>
+        <div id="body__">
+        </div>
+        </div>
+    </body>
+</html>
