@@ -1,0 +1,95 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="lib/jquery-3.6.0.min.js"></script>
+    <title>Ефимов И.С.</title>
+</head>
+<body>
+    <div class="container" id="news">
+        <h1>Задание №1 ЛР 3</h1>
+        <button id="more-news">Показать еще</button>
+        <a href="/index.php" class="btn">Вернуться на главную</a>
+    </div>
+    
+    <style>
+       
+        .news {
+            margin: 10px;
+            background-color: #ffffff;
+            overflow: hidden;
+            width: 300px;
+            flex-wrap: wrap;
+            height: 344px;
+        }
+        .img {
+            width: 100%;
+            height: 135px;
+            object-fit: cover;
+        }
+        
+        .img_head img {
+            width: 100%;
+            height: 135px;
+            object-fit: cover;
+        }
+
+    </style>
+    
+    <script>
+        $(document).ready(function() {
+            let kol = 5;
+            let tek = 0;
+            $.ajax(
+               {
+                   url: "getdata_3.php",
+                   type: "POST",
+                   data: {kol: kol, tek: tek},
+                  
+                   success: function (result) {
+                       let x = JSON.parse(result);
+                       
+                       for (let i = 0; i  < x.length; i++) {
+                           $('#news').append('<div class="news">'+
+                            '<div class="img_head">'+
+                              '<img src="'+x[i].img+'" /></div>'+
+                              '<h4>'+x[i].title_news+'</h4>'+
+                              '<p>'+x[i].description+'</p>' +
+                            '</div></div>');
+                       }
+                   }
+               } 
+            );
+            tek = 5;
+            $('#more-news').click(function () {
+                $.ajax(
+               {
+                   url: "getdata_3.php",
+                   type: "POST",
+                   data: {kol: kol, tek: tek},
+                   success: function (result) {
+                       let x = JSON.parse(result);
+                       
+                       for (let i = 0; i  < x.length; i++) {
+                           $('#news').append('<div class="news">'+
+                            '<div class="img_head">'+
+                              '<img src="'+x[i].img+'"/></div>'+
+                              '<h4>'+x[i].title_news+'</h4>'+
+                              '<p>'+x[i].description+'</p>' +
+                            '</div></div>');
+                       }
+                   }
+               } 
+            );
+            tek += 5;
+            });
+            
+        });
+    </script>
+</body>
+</html>
