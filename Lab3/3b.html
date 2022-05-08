@@ -1,0 +1,114 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="lib/jquery-3.6.0.min.js"></script>
+    <title>Ефимов И.С.</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Задание №2 ЛР3</h1>
+        <div class="zap">
+           <form id="zap">      
+              <input name="im" type="text" class="vvod_zap" placeholder="Введите имя" required/>   
+              <input name="mail" type="text" class="vvod_zap" placeholder="Введите адрес почты" required/>
+              <textarea name="text" class="vvod_zap" placeholder="Введите отзыв" required></textarea>
+              <input type="submit" value="Отправить" id="submitBtn"/>
+              <a href="/index.php" class="btn">Вернуться на главную</a>
+              <div class="title" id="zap">
+                <h1>Наши отзывы</h1>
+            </div>
+            </form>
+            
+            
+           
+        </div>
+    </div>
+    <style>
+        
+        .title{
+            margin-left: 20px;
+        }
+    
+    .otz {
+        margin-top: 14px;
+        background: #22cf42;
+        color: white;
+        padding-left: 10px;
+        margin-left: 100px;
+        align-content: space-between;
+        width: 50%;
+    }
+               .vvod_zap {
+                  color: black;
+                font-size: 18px;
+                padding: 9px;
+                margin-bottom: 8px;
+                margin-left: 100px;
+                width: 51%;
+                }
+                
+                
+                textarea {
+                  height: 150px;
+                  line-height: 150%;
+                  resize:vertical;
+                }
+                
+                [type="submit"] {
+                    width: 18%;
+                    background: #22cf42;
+                    border: 0;
+                    margin-left: 100px;
+                    font-size: 20px;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+        </style>
+        
+        
+        <script>
+            $(document).ready(function() {
+            $.ajax(
+               {
+                   url: "getdata_3-2.php",
+                   success: function (result) {
+                       let x = JSON.parse(result);
+                       
+                       for (let i = 0; i  < x.length; i++) {
+                           $('#zap').append('<div class="otz">'+
+                    '<div><h4>'+x[i].im+'</h4>'+
+                    '<p>'+x[i].mail+'</p>'+
+                    '</div>'+
+                    '<p>'+x[i].mess+'</p>'+
+                '</div>');
+                       }
+                   }
+               } 
+            );});
+            $('#zap').submit(function(e) {
+                e.preventDefault();
+                let th=$(this);
+                $('#submitBtn').hide()
+                
+                $.ajax({
+                    url: 'setdata_3-2.php',
+                    type: 'POST',
+                    data: th.serialize(),
+                    success: function(result){
+                        $('#submitBtn').show()
+                        alert(result);
+                        setTimeout(function() {
+                            th.trigger('reset');
+                        },1500)
+                    }
+                })
+            })
+        </script>
+</body>
+</html>
