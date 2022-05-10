@@ -1,0 +1,288 @@
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="ui/jquery-ui.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="ui/jquery-ui.min.js"></script>
+  <title>Ефимов И.С.</title>
+</head>
+<style>
+  .window__zak {
+    display: flex;
+    width: 50%;
+    height: 500px;
+    background: #3c3c59;
+    margin: auto;
+
+  }
+
+  .vid__perevoz {
+    width: 300px;
+    height: 350px;
+    padding: 10px;
+    color: white;
+    margin: auto;
+    border-radius: 15px;
+    background: #9b9bdf;
+    cursor: pointer;
+  }
+
+  .img {
+    width: 100%;
+  }
+
+  .title {
+    margin-left: 10px;
+  }
+
+  .title__two {
+    margin-left: 10px;
+    color: #d5d5ed;
+  }
+
+  .opis {
+    font-size: 12px;
+  }
+
+  .btn {
+    margin-left: 85px;
+    margin-top: 10px;
+    font-family: unset;
+    background: #09133b;
+    font-weight: bold;
+    font-variant: all-small-caps;
+    font-size: 15px;
+    color: white;
+    padding: 10px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <h1 class="title">Лабораторная работа №4</h1>
+  <div class="container">
+    <h2 class="title__two">Добро пожаловать в калькулятор авиаперелетов (Вариант 4)</h2>
+    <div id="tabs" class="window__zak">
+      <ul>
+        <li><a href="#tabs-1">Эконом-класс</a></li>
+        <li><a href="#tabs-2">Бизнес класс</a></li>
+      </ul>
+      <div id="tabs-1" class="vid__perevoz">
+        <a>Эконом-класс</a>
+        <img class="img" src="https://apico-tour.ru/wp-content/uploads/2018/12/1-54.jpg" />
+        <h4 class="opis">Что ждет вас при перелете в классе Эконом на рейсах Аэрофлота: сервис на высоте, самый молодой
+          самолетный парк, мультимедийная система развлечений, вкусные блюда.</h4>
+        <button id="open_1" class="btn">Забронировать</button>
+      </div>
+      <div id="tabs-2" class="vid__perevoz">
+        <a>Бизнес-класс</a>
+        <img class="img" src="https://elitetraveler.com/wp-content/uploads/2021/07/dsc-6538-390827-1.jpg" />
+        <h4 class="opis">Класс Бизнес Аэрофлота — это внимание к деталям и высокий уровень сервиса на всех этапах
+          обслуживания пассажиров, забота о тех мелочах, из которых складываются самые яркие впечатления о путешествии.
+        </h4>
+        <button id="open_2" class="btn">Забронировать</button>
+      </div>
+    </div>
+
+    <div id="accordion">
+      <h2>Наши пилоты</h2>
+      <div>
+        <p>Пилотов Анатолий Анатольевич</p>
+        <p>Марьин Геннадий Викторович</p>
+      </div>
+      <h2>Наши преимущества</h2>
+      <div>
+        <p>Все полеты контролируются профессиональными диспетчерами</p>
+        <p>Пилоты набираются из лучших летных заведений</p>
+      </div>
+      <h2>Меню</h2>
+      <div>
+        <p>Минеральная вода</p>
+        <p>Лосось под сливочным соусом</p>
+      </div>
+
+    </div>
+
+    <div id="dialog" title="Бронирование билетов">
+      <p>ФИО:
+        <input type="text" id="fio" name="fio" title="Введите ФИО" placeholder="Введите ФИО" style="width: 300px">
+
+      <div>
+        <label for="start">Количество пассажиров: <span id="peopleCount">1</span></label>
+        <div id="slider" class="row"></div>
+      </div>
+
+      <p>Откуда:
+        <select id="optionsSelect1">
+          <option selected disabled>Откуда</option>
+          <option value="110">Москва</option>
+          <option value="210">Санкт-Петербург</option>
+          <option value="310">Уфа</option>
+          <option value="410">Сызрань</option>
+        </select>
+
+      <p>Куда:
+        <select id="optionsSelect2">
+          <option selected disabled>Откуда</option>
+          <option value="140">Москва</option>
+          <option value="250">Санкт-Петербург</option>
+          <option value="150">Уфа</option>
+          <option value="120">Сызрань</option>
+        </select>
+      <p>Дата вылета:</p>
+      <div>
+        <input type="text" class="form-control" id='date' title="Выберите дату" placeholder="Выберите дату">
+      </div>
+      <p>
+
+      <p>Стоимость: <span id="price">0</span></p>
+
+      <button class="btn" id="confOrder">Забронировать</button>
+
+      <div id="dialog-confirm" title="Подтвердить заказ?">
+        <p>Пожалуйста, подтвердите бронирование</p>
+      </div>
+      <div id="dialog-message" title="Успешно!">
+        <p>
+          Ваше место забронировано
+        </p>
+        <p>
+          Спасибо за то, что доверяете Нам!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var optionsSelect1 = $('#optionsSelect1');
+    var optionsSelect2 = $('#optionsSelect2');
+    var optionsSelect3 = $('#peopleCount');
+    var totalPrice = $('#price');
+
+    function update() {
+      var firstRes = optionsSelect1.val();
+      var secondRes = optionsSelect2.val();
+      var thirdRes = optionsSelect3.text();
+      totalPrice.text(firstRes * secondRes * thirdRes);
+    }
+
+    optionsSelect1.on('change', update);
+    optionsSelect2.on('change', update);
+    optionsSelect3.on('DOMSubtreeModified', update);
+
+
+    $(function () {
+      $('#tabs').tabs();
+    });
+
+    $(function () {
+      $('#accordion').accordion({
+        collapsible: true
+
+      });
+    });
+
+    $(function () {
+      $('#dialog').dialog({
+        autoOpen: false,
+        width: 550,
+        height: 580,
+        show: {
+          effect: "fold",
+          duration: 1000
+        },
+        hide: {
+          effect: "fade",
+          duration: 1000
+        },
+      });
+    });
+
+    $('#open_1').click(function () {
+      $('#dialog').dialog('open');
+    })
+
+    $('#open_2').click(function () {
+      $('#dialog').dialog('open');
+    })
+
+    $(function () {
+      $("#select_1").selectmenu();
+    });
+
+    $(function () {
+      $("#select_2").selectmenu();
+    });
+
+    $('#slider').slider({
+      value: 1,
+      range: false,
+      min: 1,
+      max: 10,
+      step: 1,
+      slide: function (event, ui) {
+        $('#peopleCount').text(ui.value);
+      }
+    })
+
+
+
+    $('#kol').val($('#slider').slider('values', 0));
+
+    $(function () {
+      $("#date").datepicker({
+        dateFormat: "dd.mm.yy"
+      });
+    });
+
+    $(function () {
+      document.getElementById("otp_city").value;
+    })
+
+    $("#confOrder").on("click", function () {
+      $("#dialog-confirm").dialog("open");
+    });
+    $("#dialog-confirm").dialog({
+      autoOpen: false,
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Подтверждаю": function () {
+          $(this).dialog("close");
+          $("#dialog-message").dialog("open");
+        },
+        "Не подтверджаю": function () {
+          $(this).dialog("close");
+        }
+      }
+    });
+
+    $("#dialog-message").dialog({
+      autoOpen: false,
+      modal: true,
+      buttons: {
+        "Ок": function () {
+          $(this).dialog("close");
+        }
+      }
+    });
+
+
+
+
+  </script>
+</body>
+
+</html>
